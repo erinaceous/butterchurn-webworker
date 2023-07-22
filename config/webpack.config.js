@@ -1,6 +1,5 @@
-/*global __dirname, require, module*/
-
 const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const env = require('yargs').argv.env;
 
 const srcRoot = path.join(__dirname, '..', 'src');
@@ -15,17 +14,18 @@ if (env === 'prod') {
 
 const config = {
   entry: {
-    butterchurn: srcRoot + '/index.js',
-    isSupported: srcRoot + '/isSupported.js',
+    butterchurn: path.join(srcRoot, 'index.js'),
+    isSupported: path.join(srcRoot, 'isSupported.js'),
   },
-  mode: 'development',
+  mode: env === 'prod' ? 'production' : 'development',
   devtool: 'source-map',
   output: {
     path: outputPath,
     filename: outputFile + '.js',
+    hashFunction: 'xxhash64',
     library: '[name]',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   module: {
     rules: [
@@ -37,36 +37,28 @@ const config = {
           options: {
             presets: ['@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime'],
-            sourceType: 'unambiguous'
-          }
-        }
-      },
-      {
-        test: /(\.js)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader'
+            sourceType: 'unambiguous',
+          },
         },
-        enforce: "pre",
       },
       {
         test: /\.ts?$/,
         use: {
-          loader: path.resolve("loaders/assemblyscript.js"),
+          loader: path.resolve('loaders/assemblyscript.js'),
         },
       },
-    ]
+    ],
   },
   resolve: {
     modules: [srcRoot, nodeRoot],
-    extensions: ['.js']
+    extensions: ['.js'],
   },
-  plugins: []
+  plugins: [
+    new ESLintPlugin({
+      // files: ['src/**/*.js'],
+      // fix: true,
+    }),
+  ],
 };
-
-
-if (env === 'prod') {
-  config.mode = 'production';
-}
 
 module.exports = config;

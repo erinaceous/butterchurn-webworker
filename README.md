@@ -2,11 +2,9 @@
 
 Butterchurn is a WebGL implementation of the Milkdrop Visualizer
 
-
 ## [Try it out](https://butterchurnviz.com)
 
 [![Screenshot of Butterchurn](https://butterchurnviz.com/static/img/preview.png)](https://butterchurnviz.com)
-
 
 ## Usage
 
@@ -20,7 +18,7 @@ With [yarn](https://yarnpkg.com/) or [npm](https://npmjs.org/) installed, run
 
 ### Create a visualizer
 
-```JavaScript
+```js
 import butterchurn from 'butterchurn';
 import butterchurnPresets from 'butterchurn-presets';
 
@@ -57,7 +55,7 @@ Butterchurn requires the [browser support WebGL 2](https://caniuse.com/#feat=web
 
 You can test for support using our minimal isSupported script:
 
-```Javacript
+```js
 import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 
 if (isButterchurnSupported()) {
@@ -66,6 +64,7 @@ if (isButterchurnSupported()) {
 ```
 
 ## Integrations
+
 * [Webamp](https://github.com/captbaritone/webamp), the fantastic reimplementation of Winamp 2.9 in HTML5 and Javascript, built by [captbaritone](https://github.com/captbaritone)
 * [Butterchurn Extension](https://chrome.google.com/webstore/detail/butterchurn-music-visuali/jfdmelgfepjcmlljpdeajbiiibkehnih), use Butterchurn to visualize the audio from any page
 * [Rekt Networks](https://nightride.fm/#Mathdrop), Live DJs, Archives & Exclusive Releases, built by [Zei](https://twitter.com/TheRektNetwork)
@@ -75,13 +74,11 @@ if (isButterchurnSupported()) {
 * [Karaoke Forever](https://www.karaoke-forever.com), an open karaoke party system, built by [bhj](https://github.com/bhj)
 * [Syqel](https://syqel.com/), the World's Best AI Powered Music Visualizer
 
-
 ## Thanks
 
 * [Ryan Geiss](http://www.geisswerks.com/) for creating [MilkDrop](http://www.geisswerks.com/about_milkdrop.html)
 * Nullsoft for creating [Winamp](http://www.winamp.com/)
 * All the amazing preset creators, special thanks to [Flexi](https://twitter.com/Flexi23)
-
 
 ## License
 
