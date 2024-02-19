@@ -12,12 +12,17 @@ export default class Visualizer {
 
     const vizWidth = opts.width || 1200;
     const vizHeight = opts.height || 900;
-    if (window.OffscreenCanvas) {
-      this.internalCanvas = new OffscreenCanvas(vizWidth, vizHeight);
-    } else {
-      this.internalCanvas = document.createElement("canvas");
-      this.internalCanvas.width = vizWidth;
-      this.internalCanvas.height = vizHeight;
+    const reuseCanvas = opts.reuseCanvas || false;
+
+    this.internalCanvas = canvas;
+    if (!reuseCanvas) {
+        if (window.OffscreenCanvas) {
+          this.internalCanvas = new OffscreenCanvas(vizWidth, vizHeight);
+        } else {
+          this.internalCanvas = document.createElement("canvas");
+          this.internalCanvas.width = vizWidth;
+          this.internalCanvas.height = vizHeight;
+        }
     }
 
     this.gl = this.internalCanvas.getContext("webgl2", {

@@ -176,6 +176,17 @@ export default class Renderer {
     }
   }
 
+  static createCanvas(width, height) {
+    if (window.OffscreenCanvas) {
+      const canvas = new OffscreenCanvas(width, height);
+      return canvas;
+    }
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+
   static getHighestBlur(t) {
     if (/sampler_blur3/.test(t)) {
       return 3;
@@ -1231,9 +1242,7 @@ export default class Renderer {
       data.set(val, (this.texsizeY - i - 1) * this.texsizeX * 4)
     );
 
-    const canvas = document.createElement("canvas");
-    canvas.width = this.texsizeX;
-    canvas.height = this.texsizeY;
+    const canvas = this.createCanvas(this.texsizeX, this.texsizeY);
 
     const context = canvas.getContext("2d");
     const imageData = context.createImageData(this.texsizeX, this.texsizeY);
@@ -1260,9 +1269,7 @@ export default class Renderer {
       data
     );
 
-    const canvas = document.createElement("canvas");
-    canvas.width = this.texsizeX;
-    canvas.height = this.texsizeY;
+    const canvas = this.createCanvas(this.texsizeX, this.texsizeY);
 
     const context = canvas.getContext("2d");
     const imageData = context.createImageData(this.texsizeX, this.texsizeY);

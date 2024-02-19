@@ -18,9 +18,13 @@ export default class TitleText {
     this.positionVertexBuf = this.gl.createBuffer();
     this.vertexBuf = this.gl.createBuffer();
 
-    this.canvas = document.createElement("canvas");
-    this.canvas.width = this.texsizeX;
-    this.canvas.height = this.texsizeY;
+    if (window.OffscreenCanvas) {
+      this.canvas = new OffscreenCanvas(this.texsizeX, this.texsizeY);
+    } else {
+      this.canvas = document.createElement("canvas");
+      this.canvas.width = this.texsizeX;
+      this.canvas.height = this.texsizeY;
+    }
     this.context2D = this.canvas.getContext("2d");
 
     this.floatPrecision = ShaderUtils.getFragmentFloatPrecision(this.gl);
