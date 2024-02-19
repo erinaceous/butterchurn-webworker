@@ -9,7 +9,7 @@ const isSupported = () => {
 
   const webGL2Supported = !!gl;
   const audioApiSupported = !!(
-    window.AudioContext || window.webkitAudioContext
+    self.AudioContext || self.webkitAudioContext
   );
 
   return webGL2Supported && audioApiSupported;

@@ -16,7 +16,7 @@ export default class Visualizer {
 
     this.internalCanvas = canvas;
     if (!reuseCanvas) {
-        if (window.OffscreenCanvas) {
+        if (self.OffscreenCanvas) {
           this.internalCanvas = new OffscreenCanvas(vizWidth, vizHeight);
         } else {
           this.internalCanvas = document.createElement("canvas");
@@ -420,7 +420,7 @@ export default class Visualizer {
   }
 
   static base64ToArrayBuffer(base64) {
-    var binaryString = window.atob(base64);
+    var binaryString = self.atob(base64);
     var len = binaryString.length;
     var bytes = new Uint8Array(len);
     for (var i = 0; i < len; i++) {

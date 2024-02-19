@@ -1413,35 +1413,35 @@ class Noise {
 
 /* eslint-disable */
 var EPSILON = 0.00001;
-window.sqr = function sqr(x) {
+self.sqr = function sqr(x) {
   return x * x;
 };
-window.sqrt = function sqrt(x) {
+self.sqrt = function sqrt(x) {
   return Math.sqrt(Math.abs(x));
 };
-window.log10 = function log10(val) {
+self.log10 = function log10(val) {
   return Math.log(val) * Math.LOG10E;
 };
-window.sign = function sign(x) {
+self.sign = function sign(x) {
   return x > 0 ? 1 : x < 0 ? -1 : 0;
 };
-window.rand = function rand(x) {
+self.rand = function rand(x) {
   var xf = Math.floor(x);
   if (xf < 1) {
     return Math.random();
   }
   return Math.random() * xf;
 };
-window.randint = function randint(x) {
+self.randint = function randint(x) {
   return Math.floor(rand(x));
 };
-window.bnot = function bnot(x) {
+self.bnot = function bnot(x) {
   return Math.abs(x) < EPSILON ? 1 : 0;
 };
 function isFiniteNumber(num) {
   return isFinite(num) && !isNaN(num);
 }
-window.pow = function pow(x, y) {
+self.pow = function pow(x, y) {
   var z = Math.pow(x, y);
   if (!isFiniteNumber(z)) {
     // mostly from complex results
@@ -1449,50 +1449,50 @@ window.pow = function pow(x, y) {
   }
   return z;
 };
-window.div = function div(x, y) {
+self.div = function div(x, y) {
   if (y === 0) {
     return 0;
   }
   return x / y;
 };
-window.mod = function mod(x, y) {
+self.mod = function mod(x, y) {
   if (y === 0) {
     return 0;
   }
   var z = Math.floor(x) % Math.floor(y);
   return z;
 };
-window.bitor = function bitor(x, y) {
+self.bitor = function bitor(x, y) {
   var z = Math.floor(x) | Math.floor(y);
   return z;
 };
-window.bitand = function bitand(x, y) {
+self.bitand = function bitand(x, y) {
   var z = Math.floor(x) & Math.floor(y);
   return z;
 };
-window.sigmoid = function sigmoid(x, y) {
+self.sigmoid = function sigmoid(x, y) {
   var t = 1 + Math.exp(-x * y);
   return Math.abs(t) > EPSILON ? 1.0 / t : 0;
 };
-window.bor = function bor(x, y) {
+self.bor = function bor(x, y) {
   return Math.abs(x) > EPSILON || Math.abs(y) > EPSILON ? 1 : 0;
 };
-window.band = function band(x, y) {
+self.band = function band(x, y) {
   return Math.abs(x) > EPSILON && Math.abs(y) > EPSILON ? 1 : 0;
 };
-window.equal = function equal(x, y) {
+self.equal = function equal(x, y) {
   return Math.abs(x - y) < EPSILON ? 1 : 0;
 };
-window.above = function above(x, y) {
+self.above = function above(x, y) {
   return x > y ? 1 : 0;
 };
-window.below = function below(x, y) {
+self.below = function below(x, y) {
   return x < y ? 1 : 0;
 };
-window.ifcond = function ifcond(x, y, z) {
+self.ifcond = function ifcond(x, y, z) {
   return Math.abs(x) > EPSILON ? y : z;
 };
-window.memcpy = function memcpy(megabuf, dst, src, len) {
+self.memcpy = function memcpy(megabuf, dst, src, len) {
   let destOffset = dst;
   let srcOffset = src;
   let copyLen = len;
@@ -1930,7 +1930,7 @@ class Renderer {
     this.height = opts.height || 900;
     this.mesh_width = opts.meshWidth || 48;
     this.mesh_height = opts.meshHeight || 36;
-    this.pixelRatio = opts.pixelRatio || window.devicePixelRatio || 1;
+    this.pixelRatio = opts.pixelRatio || self.devicePixelRatio || 1;
     this.textureRatio = opts.textureRatio || 1;
     this.outputFXAA = opts.outputFXAA || false;
     this.texsizeX = this.width * this.pixelRatio * this.textureRatio;
@@ -2022,7 +2022,7 @@ class Renderer {
     }
   }
   static createCanvas(width, height) {
-    if (window.OffscreenCanvas) {
+    if (self.OffscreenCanvas) {
       const canvas = new OffscreenCanvas(width, height);
       return canvas;
     }
@@ -5159,7 +5159,7 @@ class TitleText {
     this.indexBuf = gl.createBuffer();
     this.positionVertexBuf = this.gl.createBuffer();
     this.vertexBuf = this.gl.createBuffer();
-    if (window.OffscreenCanvas) {
+    if (self.OffscreenCanvas) {
       this.canvas = new OffscreenCanvas(this.texsizeX, this.texsizeY);
     } else {
       this.canvas = document.createElement("canvas");
@@ -6337,7 +6337,7 @@ class Visualizer {
     const reuseCanvas = opts.reuseCanvas || false;
     this.internalCanvas = canvas;
     if (!reuseCanvas) {
-      if (window.OffscreenCanvas) {
+      if (self.OffscreenCanvas) {
         this.internalCanvas = new OffscreenCanvas(vizWidth, vizHeight);
       } else {
         this.internalCanvas = document.createElement("canvas");
@@ -6605,7 +6605,7 @@ class Visualizer {
     }, {});
   }
   static base64ToArrayBuffer(base64) {
-    var binaryString = window.atob(base64);
+    var binaryString = self.atob(base64);
     var len = binaryString.length;
     var bytes = new Uint8Array(len);
     for (var i = 0; i < len; i++) {

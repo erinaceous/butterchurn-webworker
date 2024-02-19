@@ -60,7 +60,7 @@ const isSupported = () => {
     gl = null;
   }
   const webGL2Supported = !!gl;
-  const audioApiSupported = !!(window.AudioContext || window.webkitAudioContext);
+  const audioApiSupported = !!(self.AudioContext || self.webkitAudioContext);
   return webGL2Supported && audioApiSupported;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isSupported);

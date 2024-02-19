@@ -18,7 +18,7 @@ export default class TitleText {
     this.positionVertexBuf = this.gl.createBuffer();
     this.vertexBuf = this.gl.createBuffer();
 
-    if (window.OffscreenCanvas) {
+    if (self.OffscreenCanvas) {
       this.canvas = new OffscreenCanvas(this.texsizeX, this.texsizeY);
     } else {
       this.canvas = document.createElement("canvas");
