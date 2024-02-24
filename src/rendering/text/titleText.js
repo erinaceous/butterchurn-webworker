@@ -25,7 +25,9 @@ export default class TitleText {
       this.canvas.width = this.texsizeX;
       this.canvas.height = this.texsizeY;
     }
-    this.context2D = this.canvas.getContext("2d");
+    this.context2D = this.canvas.getContext(
+        "2d", {willReadFrequently: true}
+    );
 
     this.floatPrecision = ShaderUtils.getFragmentFloatPrecision(this.gl);
     this.createShader();

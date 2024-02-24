@@ -5182,7 +5182,9 @@ class TitleText {
       this.canvas.width = this.texsizeX;
       this.canvas.height = this.texsizeY;
     }
-    this.context2D = this.canvas.getContext("2d");
+    this.context2D = this.canvas.getContext("2d", {
+      willReadFrequently: true
+    });
     this.floatPrecision = _shaders_shaderUtils__WEBPACK_IMPORTED_MODULE_0__["default"].getFragmentFloatPrecision(this.gl);
     this.createShader();
   }
